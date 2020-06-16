@@ -63,6 +63,7 @@ option(BUILD_LIBS "Build 3rd Party Libraries, not 3rd Party Drivers" Off)
 
 # Define standard set of drivers to build (default linux target)
 option(WITH_EQMOD "Install EQMod Driver" On)
+option(WITH_BASLER "Install BASLER Driver" On)
 option(WITH_STARBOOK "Install Starbook Driver" On)
 option(WITH_NSE "Install Nexstar Evo Driver" On)
 option(WITH_CAUX "Install Celestron AUX Driver" On)
@@ -138,6 +139,11 @@ ENDIF ()
 # If the Build Libs option is selected, it will just build the required libraries.
 # This should be run before the main 3rd Party Drivers build, so the drivers can find the libraries.
 IF (BUILD_LIBS)
+
+#BASLER
+if(WITH_BASLER)
+    add_subdirectory(indi-basler)
+endif(WITH_BASLER)
 
 #libapogee
 if (WITH_APOGEE)
